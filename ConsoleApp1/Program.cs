@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using LapTrinhHuongDoiTruong;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -14,6 +15,34 @@ namespace ConsoleApp1
         }
         static void Main(string[] args)
         {
+            var vn = new Folder("VN");
+            var mb = new Folder("Mien Bac");
+            var mt = new Folder("Mien Trung");
+            var mn = new Folder("Mien Nam");
+            var dn = new Folder("Da Nang");
+            var tphcm = new Folder("Ho Chi Minh");
+
+            vn.Add(mb);
+            vn.Add(mt);
+            vn.Add(mn);
+            vn.Add(new Files("thongtinvn.txt", 100));
+
+            mt.Add(dn);
+            mn.Add(tphcm);
+
+            tphcm.Add(new Files("thongtinhcm.txt", 1000));
+
+            long total = vn.GetSize();
+            Console.WriteLine(total);
+
+            Singleton s1 = Singleton.GetInstance();
+            Singleton s2 = Singleton.GetInstance();
+
+            if (s1 == s2)
+            {
+                Console.WriteLine("Cung instance");
+            }
+            /*
             Bird a = new Bird();
             a.fly();
             a.sound();
